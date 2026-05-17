@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('notification_templates', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->string('name');
             $table->string('slug')->unique();
             $table->enum('channel', ['email', 'sms', 'push', 'database', 'webhook'])->index();

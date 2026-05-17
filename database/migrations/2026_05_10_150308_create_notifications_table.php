@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->foreignId('user_id')->index()->constrained(table: 'users')->cascadeOnDelete();
             $table->foreignId('template_id')->index()->constrained(table: 'notification_templates');
             $table->enum('channel', ['email', 'sms', 'push', 'database', 'webhook'])->index();
