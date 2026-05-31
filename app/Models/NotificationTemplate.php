@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['uuid', 'name', 'slug', 'channel', 'subject', 'body', 'variables', 'is_active'])]
+#[Fillable(['name', 'slug', 'channel', 'subject', 'body', 'variables', 'is_active'])]
 class NotificationTemplate extends Model
 {
     protected function casts(): array

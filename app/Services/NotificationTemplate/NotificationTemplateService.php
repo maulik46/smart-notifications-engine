@@ -19,10 +19,7 @@ class NotificationTemplateService
 
     public function saveTemplate(array $data)
     {
-        return NotificationTemplate::create([
-            'uuid' => Str::uuid(),
-            ...$data
-        ]);
+        return NotificationTemplate::create($data);
     }
 
     public function updateTemplate(NotificationTemplate $template, array $data)

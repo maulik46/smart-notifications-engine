@@ -17,18 +17,16 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->foreignId('user_id')->index()->constrained(table: 'users')->cascadeOnDelete();
             $table->foreignId('template_id')->index()->constrained(table: 'notification_templates');
-            $table->enum('channel', ['email', 'sms', 'push', 'database', 'webhook'])->index();
-            $table->string('type');
             $table->enum('status', ['pending','queued','processing','sent','failed','read','cancelled'])->index()->default('pending');
             $table->enum('priority', ['low','medium','high','critical'])->index()->default('medium');
             $table->string('title');
             $table->text('message');
-            $table->json('data');
-            $table->timestamp('scheduled_at')->index();
-            $table->timestamp('queued_at');
-            $table->timestamp('sent_at');
-            $table->timestamp('failed_at');
-            $table->timestamp('read_at');
+            $table->json('data')->nullable();
+            $table->timestamp('scheduled_at')->nullable()->index();
+            $table->timestamp('queued_at')->nullable();
+            $table->timestamp('sent_at')->nullable();
+            $table->timestamp('failed_at')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }

@@ -19,10 +19,10 @@ Route::prefix('auth')->group(function() {
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('template')->controller(NotificationTemplateController::class)->group(function() {
         Route::get('/', 'index');
-        Route::get('/{template:uuid}', 'show');
+        Route::get('/{template:id}', 'show');
         Route::post('/save', 'store');
-        Route::patch('/update/{template:uuid}', 'update');
-        Route::delete('/delete/{template:uuid}', 'delete');
+        Route::patch('/update/{template:id}', 'update');
+        Route::delete('/delete/{template:id}', 'delete');
     });
 
     Route::prefix('notification')->controller(NotificationController::class)->group(function() {

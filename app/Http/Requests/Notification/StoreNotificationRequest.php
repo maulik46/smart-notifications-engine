@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests\Notification;
 
+use App\Models\NotificationTemplate;
+use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreNotificationRequest extends FormRequest
 {
@@ -15,6 +18,14 @@ class StoreNotificationRequest extends FormRequest
         return true;
     }
 
+    public function messages(): array
+    {
+        return [
+            'user_id' => 'Invalid user',
+            'templated_id' => 'Invalid template',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,7 +34,9 @@ class StoreNotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', Rule::exists(User::class, 'id')],
+            'template_id' => ['required', Rule::exists(NotificationTemplate::class, 'id')],	
+            'data' => ['required'],
         ];
     }
 }
