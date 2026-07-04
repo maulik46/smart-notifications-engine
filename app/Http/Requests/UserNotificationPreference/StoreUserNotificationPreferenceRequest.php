@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Notification;
+namespace App\Http\Requests\UserNotificationPreference;
 
-use App\Models\NotificationTemplate;
 use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreNotificationRequest extends FormRequest
+class StoreUserNotificationPreferenceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,14 +15,6 @@ class StoreNotificationRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
-    }
-
-    public function messages(): array
-    {
-        return [
-            'user_id' => 'Invalid user',
-            'templated_id' => 'Invalid template',
-        ];
     }
 
     /**
@@ -35,9 +26,12 @@ class StoreNotificationRequest extends FormRequest
     {
         return [
             'user_id' => ['required', Rule::exists(User::class, 'id')],
-            'template_id' => ['required', Rule::exists(NotificationTemplate::class, 'id')],	
-            'data' => ['required'],
-            'scheduled_at' => ['nullable', 'date'],
+            "email_enabled" => ['required', 'boolean'],
+            "sms_enabled" => ['required', 'boolean'],
+            "push_enabled" => ['required', 'boolean'],
+            "marketing_enabled" => ['required', 'boolean'],
+            "order_updates_enabled" => ['required', 'boolean'],
+            "security_alert_enabled" => ['required', 'boolean']
         ];
     }
 }

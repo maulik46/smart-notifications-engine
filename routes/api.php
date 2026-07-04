@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\NotificationTemplateController;
+use App\Http\Controllers\Api\NotificationUserPreferenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,17 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('notification')->controller(NotificationController::class)->group(function() {
+        Route::get('/', 'index');
+        Route::get('/statistics', 'statistics');
         Route::post('/', 'store');
+        Route::get('/{notification:uuid}', 'show');
+        Route::patch('/{notification:uuid}/status', 'updateStatus');
+    });
+
+    Route::prefix('user-preference')->controller(NotificationUserPreferenceController::class)->group(function() {
+        Route::get('/{user_id}', 'index');
+        Route::post('/', 'store');
+        Route::patch('/{user_id}', 'update');
+        Route::delete('/{user_id}', 'delete');
     });
 });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_notification_preferences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(table: 'users')->cascadeOnDelete();
+            $table->foreignId('user_id')->unique()->constrained(table: 'users')->cascadeOnDelete();
             $table->boolean('email_enabled')->default(false);
             $table->boolean('sms_enabled')->default(false);
             $table->boolean('push_enabled')->default(false);
