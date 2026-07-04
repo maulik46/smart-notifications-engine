@@ -3,72 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $notification->title }}</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f7fb;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1f2937;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg,#2563eb,#4f46e5);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #111827;
+        }
+
+        .content p {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .footer {
+            border-top: 1px solid #e5e7eb;
+            padding: 25px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 640px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .content {
+                padding: 24px;
+            }
+
+            .header {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .content h2 {
+                font-size: 22px;
+            }
+
+            .content p {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 
-<body style="margin:0;padding:30px;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;">
+<body>
 
-    <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
+<div class="container">
 
-                <table width="600" cellpadding="0" cellspacing="0"
-                    style="background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;">
+    <div class="header">
+        <h1>📨 Smart Notification Engine</h1>
+    </div>
 
-                    <!-- Header -->
-                    <tr>
-                        <td
-                            style="background:#2563eb;padding:24px;text-align:center;color:#ffffff;font-size:24px;font-weight:bold;">
-                            Smart Notification
-                        </td>
-                    </tr>
+    <div class="content">
 
-                    <!-- Body -->
-                    <tr>
-                        <td style="padding:35px;">
+        <h2>{{ $notification->title }}</h2>
 
-                            <h2 style="margin:0 0 20px;color:#111827;font-size:24px;">
-                                {{ $notification->title }}
-                            </h2>
+        <p>{!! nl2br(e($notification->message)) !!}</p>
 
-                            <p style="margin:0;color:#4b5563;font-size:16px;line-height:1.8;">
-                                {!! nl2br(e($notification->message)) !!}
-                            </p>
+    </div>
 
-                        </td>
-                    </tr>
+    <div class="footer">
+        This is an automated email from <strong>Smart Notification Engine</strong>.<br>
+        Please do not reply to this email.
+    </div>
 
-                    <!-- Divider -->
-                    <tr>
-                        <td style="padding:0 35px;">
-                            <hr style="border:none;border-top:1px solid #e5e7eb;">
-                        </td>
-                    </tr>
-
-                    <!-- Footer -->
-                    <tr>
-                        <td
-                            style="padding:20px 35px;text-align:center;color:#6b7280;font-size:13px;line-height:1.6;">
-
-                            This is an automated email from
-                            <strong>Smart Notification Engine</strong>.
-
-                            <br><br>
-
-                            Please do not reply to this email.
-
-                        </td>
-                    </tr>
-
-                </table>
-
-                <p style="margin-top:20px;color:#9ca3af;font-size:12px;">
-                    © {{ now()->year }} Smart Notification Engine
-                </p>
-
-            </td>
-        </tr>
-    </table>
+</div>
 
 </body>
 

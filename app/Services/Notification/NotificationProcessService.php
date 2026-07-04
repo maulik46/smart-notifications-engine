@@ -19,6 +19,10 @@ class NotificationProcessService
     {
         $notification = Notification::findOrFail($notificationId);
 
+        if ($notification->status === NotificationStatusEnum::SENT) {
+            return;
+        }
+
         $notification->saveLog(
             event: NotificationLogEventEnum::PROCESSING,
             provider: NotificationChannelEnum::EMAIL,

@@ -17,7 +17,9 @@ class ProcessNotificationJob implements ShouldQueue
     use SerializesModels;
 
     public $tries = 3;
-    
+
+    public array $backoff = [30, 60, 120];
+
     /**
      * Create a new job instance.
      */
