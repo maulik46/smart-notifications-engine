@@ -53,6 +53,13 @@ class NotificationController extends Controller
         return $this->successResponse(new NotificationResource($notification), 'Notification status updated successfully!');
     }
 
+    public function retryNotification(Notification $notification)
+    {
+        $this->notificationService->retryNotification($notification);
+
+        return $this->successResponse(new NotificationResource($notification), 'Notification retry initiated successfully!');
+    }
+
     public function statistics()
     {
         $statistics = Notification::query()

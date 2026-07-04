@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('notification_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_id')->index()->constrained(table: 'notifications')->cascadeOnDelete();
-            $table->enum('status', ['success','failed','retry'])->index();
-            $table->string('provider');
-            $table->string('provider_message_id');
-            $table->integer('attempt')->default(1);
-            $table->json('response');
-            $table->text('error_message');
-            $table->timestamp('processed_at')->index();
+            $table->foreignId('notification_id')->constrained()->cascadeOnDelete();
+            $table->string('event'); // queued, processing, sending, sent, failed, retry
+            $table->string('provider')->nullable();
+            $table->string('provider_message_id')->nullable();
+            $table->unsignedTinyInteger('attempt')->default(1);
+            $table->json('context')->nullable();
+            $table->text('message')->nullable();
+            $table->timestamp('processed_at')->nullable();
             $table->timestamps();
         });
     }

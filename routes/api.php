@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\NotificationTemplateController;
 use App\Http\Controllers\Api\NotificationUserPreferenceController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function() {
@@ -32,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', 'store');
         Route::get('/{notification:uuid}', 'show');
         Route::patch('/{notification:uuid}/status', 'updateStatus');
+        Route::post('/{notification:uuid}/retry', 'retryNotification');
     });
 
     Route::prefix('user-preference')->controller(NotificationUserPreferenceController::class)->group(function() {

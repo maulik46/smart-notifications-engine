@@ -1,0 +1,24 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: smart-notification-redis
+
+    restart: unless-stopped
+
+    ports:
+      - "6379:6379"
+
+    volumes:
+      - redis-data:/data
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: smart-notification-mailpit
+    restart: unless-stopped
+
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  redis-data:

@@ -2,6 +2,10 @@
 
 namespace App\Services\Notification;
 
+use App\Enums\NotificationChannelEnum;
+use App\Enums\NotificationLogEventEnum;
+use App\Enums\NotificationStatusEnum;
+use App\Jobs\ProcessNotificationJob;
 use App\Models\Notification;
 use Illuminate\Support\Str;
 
@@ -31,12 +35,38 @@ class NotificationService
             'scheduled_at' => $data['scheduled_at'] ?? null,
         ]);
 
-        $notification->logs()->create([
-            'status' => 'pending',
-            'provider' => $notification->template->channel,
-            'response' => json_encode($notification),
-        ]);
+        $notification->saveLog(
+            event: NotificationLogEventEnum::QUEUED,
+            provider: NotificationChannelEnum::EMAIL,
+            context: [
+                'notification_id' => $notification->id,
+                'template_id' => $notification->template_id,
+            ],
+            message: 'Notification created successfully',
+        );
+
+        ProcessNotificationJob::dispatch($notification->id);
 
         return $notification;
+    }
+
+    public function retryNotification(Notification $notification)
+    {
+        if ($notification->status !== NotificationStatusEnum::FAILED) {
+            throw new \Exception('Only failed notifications can be retried.');
+        }
+
+        $notification->update([
+            'status' => NotificationStatusEnum::PENDING,
+            'failed_at' => null,
+        ]);
+
+        $notification->saveLog(
+            event: NotificationLogEventEnum::RETRY,
+            provider: NotificationChannelEnum::EMAIL,
+            message: 'Notification manually queued for retry.'
+        );
+
+        ProcessNotificationJob::dispatch($notification->id);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\NotificationChannelEnum;
+use App\Enums\NotificationLogEventEnum;
 use App\Enums\NotificationPriorityEnum;
 use App\Enums\NotificationStatusEnum;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -39,5 +41,22 @@ class Notification extends Model
     public function logs(): HasMany
     {
         return $this->hasMany(NotificationLog::class, 'notification_id', 'id');
+    }
+
+    public function saveLog(
+        NotificationLogEventEnum $event,
+        NotificationChannelEnum $provider = NotificationChannelEnum::EMAIL,
+        array $context = [],
+        ?string $message = null,
+    ): void {
+
+        $this->logs()->create([
+            'event' => $event,
+            'provider' => $provider,
+            'attempt' => 1,
+            'message' => $message,
+            'context' => $context,
+            'processed_at' => now(),
+        ]);
     }
 }
