@@ -1,58 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Smart Notification Engine
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Smart Notification Engine is a scalable notification management system built with Laravel that provides a centralized solution for creating, scheduling, processing, and tracking notifications.
 
-## About Laravel
+The purpose of this project is to build a production-ready notification service where applications can manage notification workflows without handling individual notification logic separately.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+It supports reusable templates, dynamic content generation, background processing, scheduled delivery, retry handling, and notification tracking.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## What is Smart Notification Engine?
 
-## Learning Laravel
+In modern applications, different events require different notifications:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Order updates
+- Payment confirmations
+- Account activities
+- Security alerts
+- User reminders
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Instead of implementing email or notification logic in every module, this engine acts as a centralized notification layer.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Applications can create notifications using predefined templates, process them asynchronously, and monitor their delivery status.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Use Cases
 
-```bash
-composer require laravel/boost --dev
+### E-commerce Platforms
+- Order confirmation emails
+- Shipping and delivery updates
+- Payment notifications
+- Customer alerts
 
-php artisan boost:install
-```
+### Banking & Finance Applications
+- Transaction alerts
+- Security notifications
+- Account activity updates
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### SaaS Applications
+- User onboarding emails
+- Subscription reminders
+- System alerts
+- Product updates
 
-## Contributing
+### General Applications
+- Password reset emails
+- Verification emails
+- Scheduled reminders
+- User engagement notifications
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Features
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Authentication
+- User registration
+- Login/logout
+- Token-based authentication using Laravel Sanctum
 
-## Security Vulnerabilities
+### Notification Templates
+- Create reusable notification templates
+- Dynamic variable replacement
+- Template management APIs
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Notification Management
+- Create and manage notifications
+- Search and filter notifications
+- Pagination support
+- Notification details and history tracking
 
-## License
+### Scheduled Notifications
+- Schedule notifications for future delivery
+- Delayed queue-based processing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Queue Processing
+- Redis-powered background jobs
+- Asynchronous notification processing
+- Automatic retry handling
+- Configurable retry backoff strategy
+
+### Email Notifications
+- Queue-based email delivery
+- Custom email templates
+- SMTP integration
+
+### Notification Tracking
+- Notification lifecycle tracking
+- Success and failure logs
+- Retry history
+- Delivery status monitoring
+
+### User Preferences
+- Manage notification preferences
+- Control user notification settings
+
+### Analytics
+- Notification statistics
+- Delivery metrics
+- Failure tracking
+
+---
+
+# Tech Stack
+
+## Backend
+- PHP 8.3+
+- Laravel 13
+- Laravel Sanctum
+- Laravel Queue
+- Laravel Mail
+
+## Database
+- MySQL
+
+## Queue & Cache
+- Redis
+
+## Development Tools
+- Docker
+- Docker Compose
+- Mailpit
+
+## Development Practices
+- Service Layer Architecture
+- Form Request Validation
+- API Resources
+- Eloquent Relationships
+- Enum-based State Management
+
+---
+
+## Future Enhancements
+
+- Laravel Horizon integration for queue monitoring
+- Notification dashboard
+- Bulk notification processing
+- Multiple notification channels:
+  - SMS
+  - Push Notifications
+  - Webhooks
+- Email provider integrations:
+  - Amazon SES
+  - Mailgun
+  - Postmark
+- Notification analytics dashboard
+- API documentation
+- Automated testing
+- Rate limiting and throttling
+- Multi-tenant notification support
+
+---
+
+## Project Goal
+
+The goal of this project is to build a real-world backend notification infrastructure that demonstrates:
+
+- Scalable API design
+- Background job processing
+- Queue management
+- Scheduled tasks
+- Failure handling
+- Notification workflows
+- Production-level Laravel development practices
+
