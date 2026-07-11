@@ -27,11 +27,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('notification')->controller(NotificationController::class)->group(function() {
         Route::get('/', 'index');
-        Route::get('/statistics', 'statistics');
         Route::post('/', 'store');
-        Route::get('/{notification:uuid}', 'show');
-        Route::patch('/{notification:uuid}/status', 'updateStatus');
-        Route::post('/{notification:uuid}/retry', 'retryNotification');
+        Route::get('/statistics', 'statistics');
+
+        Route::prefix('/{notification:uuid}')->group(function() {
+            Route::get('/', 'show');
+            Route::get('/logs', 'logs');
+            Route::patch('/status', 'updateStatus');
+            Route::post('/retry', 'retryNotification');
+        });
     });
 
     Route::prefix('user-preference')->controller(NotificationUserPreferenceController::class)->group(function() {

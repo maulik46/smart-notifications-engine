@@ -7,7 +7,6 @@ use App\Http\Requests\UserNotificationPreference\StoreUserNotificationPreference
 use App\Http\Requests\UserNotificationPreference\UpdateUserNotificationPreferenceRequest;
 use App\Models\UserNotificationPreference;
 use App\Traits\ApiResponseTrait;
-use Illuminate\Http\Request;
 
 class NotificationUserPreferenceController extends Controller
 {

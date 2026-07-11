@@ -18,7 +18,7 @@ class ProcessNotificationJob implements ShouldQueue
 
     public $tries = 3;
 
-    public array $backoff = [30, 60, 120];
+    public int $backoff = 60;
 
     /**
      * Create a new job instance.
