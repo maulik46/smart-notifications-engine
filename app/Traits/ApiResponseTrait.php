@@ -11,6 +11,7 @@ trait ApiResponseTrait
         string $message = 'Success',
         int $status = 200
     ): JsonResponse {
+
         return response()->json([
             'success' => true,
             'message' => $message,
