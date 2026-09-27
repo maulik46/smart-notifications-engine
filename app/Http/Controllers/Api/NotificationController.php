@@ -11,6 +11,7 @@ use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
 use App\Services\Notification\NotificationService;
 use App\Traits\ApiResponseTrait;
+use Illuminate\Support\Facades\Cache;
 
 class NotificationController extends Controller
 {
@@ -70,10 +71,17 @@ class NotificationController extends Controller
 
     public function statistics()
     {
-        $statistics = Notification::query()
-            ->selectRaw('status, COUNT(*) as count')
-            ->groupBy('status')
-            ->get();
+        $statistics = Cache::store('redis')->remember(
+            'notification_statistics',
+            300,
+            function () {
+                return Notification::query()
+                    ->selectRaw('status, COUNT(*) as count')
+                    ->groupBy('status')
+                    ->get()
+                    ->toArray();
+            }
+        );
 
         return $this->successResponse($statistics, 'Notification statistics retrieved successfully!');
     }
