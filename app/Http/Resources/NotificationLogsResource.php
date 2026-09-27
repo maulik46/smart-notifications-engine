@@ -15,12 +15,12 @@ class NotificationLogsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'notification_id' => $this->notification_id,
-            'event' => $this->event,
-            'provider' => $this->provider,
-            'message' => $this->message,
-            'processed_at' => $this->processed_at,
+            'id' => $this['id'],
+            'notification_id' => $this['notification_id'],
+            'event' => $this['event'],
+            'provider' => $this['provider'],
+            'message' => $this['message'],
+            'processed_at' => $this['processed_at'],
         ];
     }
 }

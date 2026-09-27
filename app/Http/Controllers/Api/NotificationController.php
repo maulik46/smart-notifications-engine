@@ -24,7 +24,9 @@ class NotificationController extends Controller
 
     public function index()
     {
-        $data = $this->notificationService->getNotifications();
+        $data = Cache::remember('all_notifications', 60, function () {
+            return $this->notificationService->getNotifications();
+        });
 
         return $this->successResponse($data, 'Notifications retrieved successfully!');
     }
@@ -64,14 +66,16 @@ class NotificationController extends Controller
 
     public function logs(Notification $notification)
     {
-        $logs = $notification->logs()->latest()->orderByDesc('id')->get();
+        $logs = Cache::remember("notification_logs_{$notification->id}", 60, function () use ($notification) {
+            return $notification->logs()->latest()->orderByDesc('id')->get()->toArray();
+        });
 
         return $this->successResponse(NotificationLogsResource::collection($logs), 'Notification logs retrieved successfully!');
     }
 
     public function statistics()
     {
-        $statistics = Cache::store('redis')->remember(
+        $statistics = Cache::remember(
             'notification_statistics',
             300,
             function () {

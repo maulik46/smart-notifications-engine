@@ -16,9 +16,9 @@ class NotificationService
         
     }
 
-    public function getNotifications()
+    public function getNotifications(): array
     {
-        return Notification::query()->latest()->get();
+        return Notification::query()->latest()->get()->toArray();
     }
 
     public function saveNotification(array $data)
