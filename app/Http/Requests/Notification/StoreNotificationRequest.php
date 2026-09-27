@@ -35,7 +35,7 @@ class StoreNotificationRequest extends FormRequest
     {
         return [
             'user_id' => ['required', Rule::exists(User::class, 'id')],
-            'template_id' => ['required', Rule::exists(NotificationTemplate::class, 'id')],	
+            'template_id' => ['required', Rule::exists(NotificationTemplate::class, 'id')],
             'data' => ['required'],
             'scheduled_at' => ['nullable', 'date'],
         ];

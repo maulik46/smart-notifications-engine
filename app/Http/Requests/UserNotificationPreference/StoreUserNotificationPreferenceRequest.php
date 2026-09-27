@@ -26,12 +26,12 @@ class StoreUserNotificationPreferenceRequest extends FormRequest
     {
         return [
             'user_id' => ['required', Rule::exists(User::class, 'id')],
-            "email_enabled" => ['required', 'boolean'],
-            "sms_enabled" => ['required', 'boolean'],
-            "push_enabled" => ['required', 'boolean'],
-            "marketing_enabled" => ['required', 'boolean'],
-            "order_updates_enabled" => ['required', 'boolean'],
-            "security_alert_enabled" => ['required', 'boolean']
+            'email_enabled' => ['required', 'boolean'],
+            'sms_enabled' => ['required', 'boolean'],
+            'push_enabled' => ['required', 'boolean'],
+            'marketing_enabled' => ['required', 'boolean'],
+            'order_updates_enabled' => ['required', 'boolean'],
+            'security_alert_enabled' => ['required', 'boolean'],
         ];
     }
 }

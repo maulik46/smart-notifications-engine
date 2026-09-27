@@ -17,15 +17,12 @@ class NotificationTemplateController extends Controller
 {
     use ApiResponseTrait;
 
-    public function __construct(protected NotificationTemplateService $notificationTemplateService)
-    {
-        
-    }
+    public function __construct(protected NotificationTemplateService $notificationTemplateService) {}
 
     public function index(Request $request): AnonymousResourceCollection
     {
         $data = $this->notificationTemplateService->getTemplates(
-            paginated: true, 
+            paginated: true,
             limit: $request->integer('limit', 10),
             active: $request->boolean('active')
         );
@@ -58,5 +55,4 @@ class NotificationTemplateController extends Controller
 
         return $this->successResponse([], 'Templated deleted successfully!');
     }
-
 }

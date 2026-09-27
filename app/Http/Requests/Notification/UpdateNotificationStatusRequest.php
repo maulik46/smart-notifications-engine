@@ -26,13 +26,13 @@ class UpdateNotificationStatusRequest extends FormRequest
     {
         return [
             'status' => [
-                'required', 
-                'string', 
+                'required',
+                'string',
                 Rule::in(
-                    NotificationStatusEnum::PENDING->value, 
+                    NotificationStatusEnum::PENDING->value,
                     NotificationStatusEnum::QUEUED->value,
                     NotificationStatusEnum::READ->value,
-                )
+                ),
             ],
         ];
     }

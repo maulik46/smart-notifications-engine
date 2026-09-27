@@ -15,7 +15,7 @@ Route::get('/redis-test', function () {
 });
 
 Route::get('/mail-test', function () {
-    Mail::to('test@example.com')->send(new TestMail());
+    Mail::to('test@example.com')->send(new TestMail);
 
     return 'Mail sent!';
 });

@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum NotificationChannelEnum: string {
+enum NotificationChannelEnum: string
+{
     case EMAIL = 'email';
 
     case SMS = 'sms';
@@ -10,6 +11,6 @@ enum NotificationChannelEnum: string {
     case PUSH = 'push';
 
     case DATABASE = 'database';
-    
+
     case WEBHOOK = 'webhook';
 }

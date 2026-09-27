@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Auth;
 
 use App\Models\User;
@@ -6,12 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-class AuthService{
+class AuthService
+{
     public function register(array $data): array
     {
-        $user  = User::create([
-            'name' => $data['name'],	
-            'email' => $data['email'],	
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
@@ -19,25 +21,25 @@ class AuthService{
 
         return [
             'token' => $token,
-            'user' => $user
+            'user' => $user,
         ];
     }
 
     public function login(array $data): array
     {
-        if(!Auth::attempt([
+        if (! Auth::attempt([
             'email' => $data['email'],
-            'password' => $data['password']
-        ])){
+            'password' => $data['password'],
+        ])) {
             throw new UnauthorizedHttpException('', 'Invalid email & password');
         }
 
         $user = Auth::user();
         $token = $user->createToken('auth_token')->plainTextToken;
-        
+
         return [
             'token' => $token,
-            'user' => $user
+            'user' => $user,
         ];
     }
 

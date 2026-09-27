@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use function Laravel\Prompts\table;
 
 return new class extends Migration
 {
@@ -17,8 +16,8 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->foreignId('user_id')->index()->constrained(table: 'users')->cascadeOnDelete();
             $table->foreignId('template_id')->index()->constrained(table: 'notification_templates');
-            $table->enum('status', ['pending','queued','processing','sent','failed','read','cancelled'])->index()->default('pending');
-            $table->enum('priority', ['low','medium','high','critical'])->index()->default('medium');
+            $table->enum('status', ['pending', 'queued', 'processing', 'sent', 'failed', 'read', 'cancelled'])->index()->default('pending');
+            $table->enum('priority', ['low', 'medium', 'high', 'critical'])->index()->default('medium');
             $table->string('title');
             $table->text('message');
             $table->json('data')->nullable();

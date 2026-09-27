@@ -26,12 +26,12 @@ class UpdateUserNotificationPreferenceRequest extends FormRequest
     {
         return [
             'user_id' => ['sometimes', Rule::exists(User::class, 'id')],
-            "email_enabled" => ['sometimes', 'boolean'],
-            "sms_enabled" => ['sometimes', 'boolean'],
-            "push_enabled" => ['sometimes', 'boolean'],
-            "marketing_enabled" => ['sometimes', 'boolean'],
-            "order_updates_enabled" => ['sometimes', 'boolean'],
-            "security_alert_enabled" => ['sometimes', 'boolean']
+            'email_enabled' => ['sometimes', 'boolean'],
+            'sms_enabled' => ['sometimes', 'boolean'],
+            'push_enabled' => ['sometimes', 'boolean'],
+            'marketing_enabled' => ['sometimes', 'boolean'],
+            'order_updates_enabled' => ['sometimes', 'boolean'],
+            'security_alert_enabled' => ['sometimes', 'boolean'],
         ];
     }
 }

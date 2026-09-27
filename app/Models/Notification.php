@@ -24,7 +24,7 @@ class Notification extends Model
             'sent_at' => 'datetime',
             'failed_at' => 'datetime',
             'read_at' => 'datetime',
-            'data' => 'object'
+            'data' => 'object',
         ];
     }
 

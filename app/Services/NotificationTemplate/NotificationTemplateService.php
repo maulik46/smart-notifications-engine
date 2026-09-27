@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Services\NotificationTemplate;
 
 use App\Models\NotificationTemplate;
-use Illuminate\Support\Str;
 
 class NotificationTemplateService
 {

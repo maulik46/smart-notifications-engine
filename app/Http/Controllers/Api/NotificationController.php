@@ -17,10 +17,7 @@ class NotificationController extends Controller
 {
     use ApiResponseTrait;
 
-    public function __construct(protected NotificationService $notificationService)
-    {
-        
-    }
+    public function __construct(protected NotificationService $notificationService) {}
 
     public function index()
     {
@@ -48,7 +45,7 @@ class NotificationController extends Controller
     public function updateStatus(UpdateNotificationStatusRequest $request, Notification $notification)
     {
         $notification->status = $request->validated('status');
-        if(NotificationStatusEnum::READ->value === $request->validated('status')) {
+        if (NotificationStatusEnum::READ->value === $request->validated('status')) {
             $notification->read_at = now();
         }
 

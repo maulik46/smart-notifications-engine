@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Notification;
 
 use App\Models\NotificationTemplate;
@@ -11,8 +12,8 @@ class TemplateParserService
         $body = $template->body;
         $subject = $template->subject;
 
-        if(!empty($data)){
-            foreach($data as $key => $value) {
+        if (! empty($data)) {
+            foreach ($data as $key => $value) {
                 $bodyValueReplaced = str_replace($key, $value, $body);
                 $body = str_replace(['{{ ', ' }}', '{{', '}}'], '', $bodyValueReplaced);
 

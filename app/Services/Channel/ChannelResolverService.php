@@ -11,8 +11,7 @@ class ChannelResolverService
         protected EmailChannelService $emailChannelService,
         protected SmsChannelService $smsChannelService,
         protected PushChannelService $pushChannelService
-    ) {
-    }
+    ) {}
 
     public function send(Notification $notification): void
     {

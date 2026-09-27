@@ -23,8 +23,7 @@ class ProcessNotificationJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public int $notificationId)
-    {}
+    public function __construct(public int $notificationId) {}
 
     /**
      * Execute the job.

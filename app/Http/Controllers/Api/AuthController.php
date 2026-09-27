@@ -14,10 +14,7 @@ class AuthController extends Controller
 {
     use ApiResponseTrait;
 
-    public function __construct(protected AuthService $authService)
-    {
-        
-    }
+    public function __construct(protected AuthService $authService) {}
 
     public function login(LoginRequest $request): JsonResponse
     {

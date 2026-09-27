@@ -29,7 +29,7 @@ class UpdateNotificationTemplateRequest extends FormRequest
             'slug' => [
                 'sometimes',
                 'alpha_dash',
-                'unique:notification_templates,slug,' . $this->template->id,
+                'unique:notification_templates,slug,'.$this->template->id,
             ],
             'channel' => [
                 'sometimes',
